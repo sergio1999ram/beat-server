@@ -15,6 +15,8 @@ const LocationSchema = new mongoose.Schema({
             required: [true, 'Longitude is required']
         }
     }
+}, {
+    versionKey: false
 });
 
 module.exports = mongoose.model('Location', LocationSchema);
