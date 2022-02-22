@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const moment = require('moment');
 
+require('./utils/db-config');
+
 const {
     pricePerKm,
     dayOfWeekMultiplier,
