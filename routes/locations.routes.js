@@ -2,6 +2,8 @@ const Router = require('express').Router;
 
 const Location = require('../models/Location');
 
+const ObjectId = require('mongoose').Types.ObjectId;
+
 const router = Router();
 
 router.get('/', async (req, res) => {
@@ -17,7 +19,13 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
 
-    res.json({ method: 'GET', endpoint: `/locations/${id}`, message: 'Get a location by the id' });
+    try {
+        const location = await Location.findById(ObjectId(id));
+        res.status(200).json({ location });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error })
+    }
 })
 
 router.post('/', async (req, res) => {
