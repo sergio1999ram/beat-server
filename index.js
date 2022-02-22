@@ -2,7 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const moment = require('moment');
 
-const { pricePerKm, dayOfWeekMultiplier, timeOfDayMultiplier } = require('./utils/constants');
+const {
+    pricePerKm,
+    dayOfWeekMultiplier,
+    timeOfDayMultiplier
+} = require('./utils/constants');
 
 const {
     calculateDistance
