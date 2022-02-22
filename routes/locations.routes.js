@@ -1,9 +1,17 @@
 const Router = require('express').Router;
 
+const Location = require('../models/Location');
+
 const router = Router();
 
 router.get('/', async (req, res) => {
-    res.json({ method: 'GET', endpoint: '/locations/', message: 'Get all the locations' });
+    try {
+        const locations = await Location.find();
+        res.status(200).json({ locations });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error });
+    }
 });
 
 router.get('/:id', async (req, res) => {
@@ -14,8 +22,14 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const { name, coords } = req.body;
-
-    res.json({ method: 'POST', endpoint: '/locations/', body: { name, coords }, message: 'Post a location to the database' });
+    try {
+        const location = await Location.create({ name, coords });
+        console.log(location);
+        res.sendStatus(201);
+    } catch (error) {
+        console.log(error);
+        res.json({ error });
+    }
 });
 
 module.exports = router;
