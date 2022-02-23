@@ -1,6 +1,6 @@
 FROM node:13-alpine
 
-ENV MONG_DB_USERNAME=admin \
+ENV MONGO_DB_USERNAME=admin \
     MONGO_DB_PASSWORD=admin \
     MONGO_DB_NAME=beat-assessment
 
